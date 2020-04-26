@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="FRA">
+
+
+<!-- employees23:21-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/icon2.ico">
+    <title>{% block title %}Orientation{% endblock %}</title>
+
+     {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <style>
+
+.image-position{
+    position: absolute;
+    left: 3%;
+}
+.image-position img{
+    width: 70%;
+}
+
+.center-block{
+    width: 100%;
+}
+h2 {
+    color: #AAAAAA;
+    font-weight: normal;
+}
+.bg-for-submit-name
+{
+    background: url('https://lh4.ggpht.com/GLT1kYMvi4oiguL9FOc1eM5q7sW0AvVJNWyBZ26iMq-BSm3Kpi9CPDR2UGoVlYrVwA=h900') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+.margin-top{
+    margin-top: 270px;
+}
+
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+form
+{
+    width: 500px;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+
+.pr-wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.show-pass-reset
+{
+    display: block !important;
+}
+
+.pass-reset
+{
+    margin: 0 auto;
+    width: 250px;
+    position: relative;
+    margin-top: 22%;
+    z-index: 999;
+    background: #FFFFFF;
+    padding: 20px 15px;
+}
+
+.pass-reset label
+{
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.pass-reset input[type="email"]
+{
+    width: 100%;
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #000000;
+    outline: 0;
+}
+
+.pass-reset input[type="submit"]
+{
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+/*----------quiz.css---------------*/
+
+
+.loanParamsLoader {
+    top: 143px;
+    margin: auto;
+    position: absolute;
+    right: 17%;
+    width: 160%;
+}
+.question{
+    background: rgb(237, 237, 237);
+    padding: 8px;
+    color: gray;
+    border-bottom-right-radius: 55px;
+    border-top-left-radius: 55px;
+}
+
+#qid{
+    margin-right: 22px;
+   
+    color: white;
+}
+.container ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+#ul li{
+  color: #AAAAAA;
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #111111;
+}
+
+ul li input[type=radio]{
+  position: absolute;
+  visibility: hidden;
+}
+
+ul li label{
+  display: block;
+  position: relative;
+  font-weight: 300;
+  font-size: 1.35em;
+  padding: 25px 25px 25px 80px;
+  margin: 10px auto;
+  height: 30px;
+  z-index: 9;
+  cursor: pointer;
+  -webkit-transition: all 0.25s linear;
+}
+
+ul li:hover label{
+    color: rgb(0, 151, 0);
+}
+
+ul li .check{
+  display: block;
+  position: absolute;
+  border: 5px solid #AAAAAA;
+  border-radius: 100%;
+  height: 30px;
+  width: 30px;
+  top: 30px;
+  left: 20px;
+    z-index: 5;
+    transition: border .25s linear;
+    -webkit-transition: border .25s linear;
+}
+
+ul li:hover .check {
+  border: 5px solid rgb(0, 151, 0);
+}
+
+ul li .check::before {
+  display: block;
+    position: absolute;
+    content: '';
+    border-radius: 100%;
+    height: 14px;
+    width: 14px;
+    top: 3px;
+    left: 3px;
+  margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+input[type=radio]:checked ~ .check {
+  border: 5px solid rgb(0, 151, 0);
+}
+
+input[type=radio]:checked ~ .check::before{
+  background: rgb(0, 155, 0);/*attr('data-background');*/
+}
+
+input[type=radio]:checked ~ label{
+  color: rgb(0, 148, 0);
+}
+
+#result-of-question th{
+  text-align: center;
+    background: #75ba48;
+    color: #fff;
+    padding: 18px;
+    font-size: 18px;
+    border: none;
+}
+#result-of-question  td{
+  text-align: center;
+    color: #222;
+    background-color: #fff;
+    padding: 18px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 1px solid #75ba48;
+}
+
+#totalCorrect{
+    color: #fff;
+    background: #75ba48;
+    padding: 22px 20px;
+    border-radius: 1px;
+    font-stretch: expanded;
+    font-size: 28px;
+    font-weight: bold;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;  
+}
+#alert{
+    /* Position fixed */
+    position:fixed;
+    /* Center it! */
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+/*----------riple bubble-----------------*/
+ul {
+    margin: 0 auto;
+}
+/*.ink styles - the elements which will create the ripple effect. The size and position of these elements will be set by the JS code. Initially these elements will be scaled down to 0% and later animated to large fading circles on user click.*/
+.ink {
+    display: inline; 
+    position: absolute;
+    background: #75ba48;
+    border-radius: 100%;
+    transform: scale(0);
+}
+/*animation effect*/
+.ink.animate {animation: ripple 0.65s linear;}
+@keyframes ripple {
+    /*scale the element to 250% to safely cover the entire link and fade it out*/
+    100% {opacity: 0; transform: scale(2.5);}
+}
+
+
+
+
+
+
+
+
+
+    </style>
+
+
+    {% endblock %}
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+{% block body %}
+    <div class="main-wrapper">
+        <div class="header" style="background-color:rgb(82, 33, 41)">
+			<div class="header-left">
+				<a href="index-2.html" class="logo">
+									<img src="{{asset('assets/img/slogo.png')}}" width="60" height="60" alt=""><span>SehatTefli</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+              
+               
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+							<span class="status online"></span></span>
+                        <span>{{app.User.nameComplet}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+						<a class="dropdown-item" href="settings.html">Settings</a>
+						<a class="dropdown-item" href="login.html">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar" >
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                     <ul>
+                        <li class="menu-title">Main</li>
+                        <li >
+                            <a href="{{path('index')}}"><i class="fa fa-home"></i> <span>Acceill </span></a>
+                        </li>
+                                 <li>
+                            <a href="{{path('orientation')}}"><i class="fa fa-adjust"></i> <span>Orientation</span></a>
+                        </li>
+
+                                  <li>
+                            <a href=""><i class="fa fa-heartbeat"></i> <span>FAQ</span></a>
+                        </li>
+						<li>
+                            <a href="{{path('pediatre')}}"><i class="fa fa-user-md"></i> <span>Pédiatres</span></a>
+                        </li>
+                        <li>
+                            <a href="{{path('medicament')}}"><i class="fa fa-wheelchair"></i> <span>Medicament</span></a>
+                        </li>
+
+                        
+                        <li>
+                            <a href="{{path('blog')}}"><i class="fa fa-comments"></i> <span>Mediatheque</span> </a>
+                        </li>
+
+ 
+                        
+                        <li>
+                            <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Santé D'enfant</span></a>
+                        </li>
+						
+								<li><a href="{{path('Parents')}}"><i class="fa fa-user"></i> <span>list des Parents</span></a></li>
+                                <li><a href="{{path('enfants',{'id':app.User.id})}}"><i class="fa fa-child"></i> <span>list des Enfants</span></a></li>
+                                 <li><a href="{{path('users')}}"><i class="fa fa-user"></i> <span>Utilisateurs</span></a></li>
+						
+						
+						<li>
+							<a href="{{path('chat')}}"><i class="fa fa-bell-o"></i> <span>Chat</span></a>
+						</li>
+					
+                      
+                        
+                    
+                        <li>
+                            <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendrier Vaccinal</span></a>
+                        </li>
+                      
+                    
+                       
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+           
+       
+        <div class="page-wrapper">
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-4 col-3">
+                        <h4 class="page-title">Orientation</h4>
+                         <img style="width:150px;" src="{{asset('assets/img/lwego.png')}}" />
+                    </div>
+                     <div class="col-sm-4 col-3">
+                       
+                    </div>
+                 
+                </div><br>
+				
+
+
+ <div class="row"><br><br>
+            <div class="col-sm-8 col-sm-offset-2">
+                <div class="loader">
+                  
+
+                    <div id="quiz" style="width:650px;">
+                  
+                        <div class="question" style="text-align:center;">
+                            <h3>
+                            <span style="font-size:18.5px"  id="question">? هل يعاني طفلك من ضيق في التنفس او حمى</span>
+                           
+                            </h3>
+                        </div>
+                        <ul id="ul">
+                          <li>
+                            <input type="radio" id="f-option" name="selector" value="1">
+                            <label for="f-option" class="element-animation">نعم</label>
+                            <div class="check"></div>
+                          </li>
+                          
+                          <li>
+                            <input type="radio" id="s-option" name="selector" value="2">
+                            <label for="s-option" class="element-animation">لا</label>
+                            <div class="check"><div class="inside"></div></div>
+                          </li>
+
+                          <li>
+
+
+                   <div class="w3-bar">
+  <button style="padding-left:15px;padding-right:15px;" class="w3-button w3-red"> << PREVIOUS</button>
+  
+  <button style="padding-left:30px;padding-right:30px;" class="w3-button w3-red">NEXT >></button>
+</div>
+                          
+                        </li>
+                        </ul>
+
+                    </div>
+             
+                </div>
+                <div class="text-muted">
+                    <span id="answer"></span>
+                </div>
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <div id="result-of-question" class="pulse animated" style="display: none;">
+                    <span id="totalCorrect" class="pull-right"></span>
+                    <table class="table table-hover table-responsive" >
+                        <thead>
+                            <tr>
+                                <th>Question No.</th>
+                                <th>Our answer</th>
+                                <th>Your answer</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="quizResult"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+         
+        </div>
+	
+
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    {% endblock %}
+
+      {% block javascripts %}
+    <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('assets/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/moment.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
+     {% endblock %}
+</body>
+
+
+<!-- employees23:22-->
+</html>

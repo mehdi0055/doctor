@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- employees23:21-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/img/icon2.ico')}}">
+    <title>{% block title %}Ajouter Article{% endblock %}</title>
+
+     {% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/select2.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap-datetimepicker.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
+     
+
+
+    {% endblock %}
+    <!--[if lt IE 9]>
+		<script src="assets/js/html5shiv.min.js"></script>
+		<script src="assets/js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+{% block body %}
+    <div class="main-wrapper">
+        <div class="header" style="background-color:rgb(82, 33, 41)"  >
+			<div class="header-left">
+				<a href="index-2.html" class="logo">
+									<img src="{{asset('assets/img/slogo.png')}}" width="60" height="60" alt=""><span>SehatTefli</span>
+				</a>
+			</div>
+			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+            <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+            <ul class="nav user-menu float-right">
+              
+               
+                <li class="nav-item dropdown has-arrow">
+                    <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+							<span class="status online"></span></span>
+                        <span>{{app.User.nameComplet}}</span>
+                    </a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="profile.html">My Profile</a>
+						<a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+						<a class="dropdown-item" href="settings.html">Settings</a>
+						<a class="dropdown-item" href="{{path('app_logout') }}">Logout</a>
+					</div>
+                </li>
+            </ul>
+            <div class="dropdown mobile-user-menu float-right">
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                    <a class="dropdown-item" href="settings.html">Settings</a>
+                    <a class="dropdown-item" href="{{path('app_logout') }}">Logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar" id="sidebar" >
+            <div class="sidebar-inner slimscroll">
+                <div id="sidebar-menu" class="sidebar-menu">
+                    <ul>
+                        <li class="menu-title">Main</li>
+                        <li >
+                            <a href="{{path('index')}}"><i class="fa fa-home"></i> <span>Acceill</span></a>
+                        </li>
+                                 <li>
+                            <a href="patients.html"><i class="fa fa-adjust"></i> <span>Orientation</span></a>
+                        </li>
+
+                                  <li>
+                            <a href=""><i class="fa fa-heartbeat"></i> <span>FAQ</span></a>
+                        </li>
+						<li>
+                            <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Pédiatres</span></a>
+                        </li>
+                        <li>
+                            <a href="{{path('medicament')}}"><i class="fa fa-wheelchair"></i> <span>Medicament</span></a>
+                        </li>
+
+                        
+                        <li>
+                            <a href=""><i class="fa fa-comments"></i> <span>Mediatheque</span> </a>
+                        </li>
+
+ 
+                        
+                        <li>
+                            <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Santé D'enfant</span></a>
+                        </li>
+						
+								<li><a href="employees.html"><i class="fa fa-user"></i> <span>list des Parents</span></a></li>
+                                <li><a href="employees.html"><i class="fa fa-child"></i> <span>list des Enfants</span></a></li>
+                                 <li><a href="{{path('users')}}"><i class="fa fa-user"></i> <span>Utilisateurs</span></a></li>
+						
+						
+						<li>
+							<a href="{{path('chat')}}"><i class="fa fa-bell-o"></i> <span>Chat</span></a>
+						</li>
+					
+                      
+                        
+                    
+                        <li>
+                            <a href="calendar.html"><i class="fa fa-calendar"></i> <span>Calendrier Vaccinal</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+       
+           
+<div class="page-wrapper" >
+           
+           
+        
+	 <div class="content">
+            
+ <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <h4 class="page-title">Ajouter un article</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <form method="post" action="{{path('addBlog',{'email':app.User.email})}}" enctype="multipart/form-data" >
+                <div class="form-group">
+                    <label>Titre Article</label>
+                    <input name="nom" class="form-control" type="text">
+                </div>
+                <div class="form-group">
+                    <label>Image Article</label>
+                    <div>
+                        
+                        <input name="imageBlog" class="form-control" type="file">
+                     {% if fileName is defined %}
+                                <input name="fil"  type="text" value="{{fileName}}"  />
+
+                                {% endif %}
+
+                              <input name="inserer" style=" width:120px" class="btn btn-outline-secondary " type="submit" value="inseré l'image">
+                        <small class="form-text text-muted">Max. file size: 50 MB. Allowed images: jpg, gif, png.</small>
+                   
+                    </div>
+                    <div>
+
+                       
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-3 col-4 col-lg-3 col-xl-2">
+                            <div class="product-thumbnail">
+
+                            {% if fileName is defined %}
+
+                                <img src="{{asset('assets/img/blog/' ~ fileName)}}" class="img-thumbnail img-fluid" alt="">
+
+                                {% else %}
+
+
+                                       <img src=".." class="img-thumbnail img-fluid" alt="">
+
+
+                                {% endif %}
+
+                         
+                                <span class="product-remove" title="remove"><i class="fa fa-close"></i></span>
+                            </div>
+                        </div>
+                     
+                      
+                       
+                     
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Categorie Article</label>
+                            <select name="cat" class="select">
+
+
+
+                            {% for c in cat %}
+                                <option>{{c.nomCategorie}}</option>
+
+                                {% endfor %}
+                               
+                            </select>
+                        </div>
+                    </div>
+                  
+                </div>
+                <div class="form-group">
+                    <label>Description Article</label>
+                    <textarea name="desc" cols="30" rows="6" class="form-control"></textarea>
+                </div>
+             
+             
+                <div  class="m-t-20 text-center">
+                    <input name="publier" class="btn btn-danger submit-btn" value="Publier" type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+
+		
+				
+            </div>
+               </div>
+
+    </div>
+    <div class="sidebar-overlay" data-reff=""></div>
+    {% endblock %}
+
+      {% block javascripts %}
+    <script src="{{asset('assets/js/jquery-3.2.1.min.js')}}"></script>
+	<script src="{{asset('assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.slimscroll.js')}}"></script>
+    <script src="{{asset('assets/js/select2.min.js')}}"></script>
+    <script src="{{asset('assets/js/moment.min.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
+    <script src="{{asset('assets/js/app.js')}}"></script>
+     {% endblock %}
+</body>
+
+
+<!-- employees23:22-->
+</html>
